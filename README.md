@@ -79,7 +79,7 @@
     * Output is `reports/flagstat.txt` and `reports/flagstat_summary.txt`
       * `flagstat.txt` contains flagstat report for each sample
       * `flagstat_summary.txt` contains only the total number of reads in each sample
-* Step 8: `bioinformatics/Step8_DiffBined_ATACseq.R`
+* Step 8: `bioinformatics/Step8_DiffBind_ATACseq.R`
   * Used R libraries DiffBind and DESeq2 to perform differential analysis
     * R output files are in `/share/crsp/lab/blumberg/share/bioinformatics` in HPC3
       * I ran this on both broad peaks and narrow peaks, everything that was generated with narrow peaks is in `narrow_peaks` folder in HPC3
@@ -286,4 +286,12 @@
           * `bioinformatics/plots/heatmap_ATAC_differential_pearson_narrow.png` is a pearson correlation heatmap
           * `bioinformatics/plots/heatmap_ATAC_differential_spearman_narrow.png` is a spearman correlation heatmap
           * I attempted to create a kendall correlation heatmap but the run would crash out in the cluster so I removed that line of code
-        * 
+* Step 9: `bioinformatics/Step9_CHIPseeker_ATACseq.R`
+  * Used R libraries CHIPseeker and clusterProfiler to perform GO analysis. 
+    * R output files are in `bioinformatics` folder. The files generated with narrow peaks are in the `narrow_attempt` folder
+      * I uploaded `ATAC_DiffPeaks_malew1.txt` as the peak file and used `annotatePeak` function to match peak coordinates to peak annotations
+      * `bioinformatics/plots/piechart_malew1.png` is a pie chart showing genomic distribution
+      * `bioinformatics/plots/upsetplot_malew1.png` shows peak overlaps between annotation categories
+      * `bioinformatics/plots/coverageplot_malew1.png` shows tss enrichment
+      * `bioinformatics/plots/heatmaptags_ATAC.png` show position relative to TSS
+      * `bioinformatics/DiffPeaksGO.txt` is the GO analysis on male w1 samples
