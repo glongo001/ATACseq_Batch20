@@ -1,0 +1,69 @@
+#!/bin/bash
+#SBATCH --job-name=trimmed_bam_files      ## Name of the job
+#SBATCH -A BLUMBERG_LAB      ## account to charge
+#SBATCH -p standard               ## partition name
+#SBATCH --array=0-23             ##24 samples = 0 to 23
+#SBATCH --nodes=1             ## (-N) number of nodes to use
+#SBATCH --ntasks=1            ## (-n) number of tasks to launch
+#SBATCH --cpus-per-task=24     ## number of cores the job needs
+#SBATCH --mem=64G           # increase memory allocation
+#SBATCH --error=slurm-%A_%a.err  ## error log file
+#SBATCH --output=slurm-%A_%a.out ## output log file
+
+#set variables for where to find and store files
+base_path='/share/crsp/lab/blumberg/share'
+#fastq path
+fastq_path='/pub/galongo/ATAC-seq/trimmed_fastq'
+#save genome index path
+index_path='/pub/galongo/genome_index/STARgenome_mm10'
+#sample list
+sample_list='/share/crsp/lab/blumberg/share/trimmed_fastq/samples.txt'
+
+#load STAR
+module load star/2.7.10a samtools/1.15.1
+
+echo "Job started at $(date)"
+
+#get sample name
+sample=$(sed -n "$((SLURM_ARRAY_TASK_ID + 1))p" "$sample_list" | cut -f1)
+sample_number=$(sed -n "$((SLURM_ARRAY_TASK_ID + 1))p" "$sample_list" | cut -f2)
+
+#define output directory
+output_dir="$base_path/STAR_output/trimmed/$sample"
+mkdir -p "$output_dir"
+
+#run on 4 lanes
+for lane in {1..4}; do
+    infile="${fastq_path}/${sample}_${sample_number}_L00${lane}_R1_001_trimmed.fq.gz"
+    sorted_bam_path="$base_path/sorted_bam/trimmed/${sample}_L00${lane}_Aligned.sorted.bam"
+
+    #skip if already exists
+    if [[ -f "$sorted_bam_path" ]]; then
+	echo "$sample lane $lane already processed. Skipping..."
+	continue
+    fi
+    
+    #create temporary directory for each file
+    outTmpDir="$output_dir/STARtmp_L00${lane}"
+    rm -rf "$outTmpDir"  #remove if it exists to prevent conflicts
+
+    STAR --genomeDir "$index_path" \
+	 --runThreadN $SLURM_CPUS_PER_TASK \
+      	 --readFilesCommand zcat \
+	 --outFilterScoreMinOverLread 0 \
+	 --outFilterMatchNminOverLread 0 \
+	 --outFilterMatchNmin 0 \
+	 --outFilterMismatchNmax 2 \
+	 --readFilesIn "${infile}" \
+	 --outFileNamePrefix "$output_dir/${sample}_L00${lane}_" \
+	 --outSAMtype BAM Unsorted \
+	 --outTmpDir "$outTmpDir" || { echo "STAR failed for $sample lane $lane"; exit 1; }
+
+    #sort and index BAM
+    #sort the BAM file
+    samtools sort $output_dir/${sample}_L00${lane}_Aligned.out.bam -o "$sorted_bam_path" || exit 1
+    #index the BAM file
+    samtools index "$sorted_bam_path"
+done
+
+echo "Job finished at $(date)"
