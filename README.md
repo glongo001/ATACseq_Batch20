@@ -171,18 +171,28 @@
         * `bioinformatics/ATAC_DiffPeaks_malew1.txt` is a differential binding report on `mTBTw1` vs `mDMSOw1`
         * I attempted to create reports comparing `mTBTw5` vs `mDMSOw1`, `fTBTw1` vs `fDMSOw1`, and `fTBTw5` vs `fDMSOw5` but they were not generated
         * `bioinformatics/plots/Venndiagrams_w1.png` is a Venn diagram on all w1 samples
+![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/Venndiagram_w1.png)
         * `bioinformatics/plots/Venndiagrams_w5.png` is a Venn diagram on all w5 samples
+![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/Venndiagram_w5.png)
         * `bioinformatics/plots/MAplot_ATAC_malew1.png` is an MA plot on male w1 samples. 1223 peaks had FDR < 0.05
+![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/MAplot_malew1.png)
         * `bioinformatics/plots/MAplot_ATAC_malew5.png` is an MA plot on male w5 samples. 0 peaks had FDR < 0.05
+![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/MAplot_ATAC_malew5.png)
         * `bioinformatics/plots/MAplot_ATAC_femalew1.png` is an MA plot on female w1 samples. 0 peaks had FDR < 0.05
+![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/MAplot_ATAC_femalew1.png)
         * MA plot of female w5 samples was not generated
         * `bioinformatics/plots/PCAplot_ATAC.png` is a PCA plot showing sample clusters by condition
+![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/PCAplot_ATAC.png)
         * `bioinformatics/plots/boxplot_malew1.png` is a boxplot showing conts per sample a p-values after normalization on male w1 samples
+![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/boxplot_malew1.png)
           * I attempted to generate on male w5, female w1, and female w5, but they were not generated
         * `bioinformatics/plots/heatmap_ATAC_differential_malew1.png` is a heatmap showing only significant differential peaks
+![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/heatmap_ATAC_differential_malew1.png)
           * I attempted to generate on male w5, female w1, and female w5, but they were not generated
           * `bioinformatics/plots/heatmap_ATAC_differential_pearson.png` is a pearson correlation heatmap
+![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/heatmap_ATAC_pearson.png)
           * `bioinformatics/plots/heatmap_ATAC_differential_spearman.png` is a spearman correlation heatmap
+![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/heatmap_ATAC_spearman.png)
           * I attempted to create a kendall correlation heatmap but the run would crash out in the cluster so I removed that line of code
       * On narrow peaks:
         * `diffbind_counted_narrow.rds` contains read count at each peak and the consensus peakset
@@ -214,6 +224,7 @@
           | 23 | 298mTBTw1 |   mTBTw1 |        3 | 4103125 | 0.08 |
           | 24 | 299mDMSOw5 |  mDMSOw5 |        3 | 6694580 | 0.05 |
         * `bioinformatics/plots/correlation_affinity_narrow.png` is an affinity score-based correlation graph
+![alt text]()
         * `diffbind_analyzed_narrow.rds` was created after establishing contrasts based on condition (treatment x sex x week) and running DESeq2 analysis with dba.analyze
           24 Samples, 38491 sites in matrix:
           |  | ID | Condition | Replicate |    Reads | FRiP |
@@ -292,7 +303,11 @@
     * R output files are in `bioinformatics` folder. The files generated with narrow peaks are in the `narrow_attempt` folder
       * I uploaded `ATAC_DiffPeaks_malew1.txt` as the peak file and used `annotatePeak` function to match peak coordinates to peak annotations
       * `bioinformatics/plots/piechart_malew1.png` is a pie chart showing genomic distribution
+![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/piechart_malew1.png)
       * `bioinformatics/plots/upsetplot_malew1.png` shows peak overlaps between annotation categories
+![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/upsetplot_malew1.png)
       * `bioinformatics/plots/coverageplot_malew1.png` shows tss enrichment
+![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/coverageplot_malew1.png)
       * `bioinformatics/plots/heatmaptags_ATAC.png` show position relative to TSS
+![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/heatmaptags_ATAC.png)
       * `bioinformatics/DiffPeaksGO.txt` is the GO analysis on male w1 samples
