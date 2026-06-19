@@ -186,7 +186,8 @@
       * On narrow peaks:
         * `diffbind_counted_narrow.rds` contains read count at each peak and the consensus peakset
           24 Samples, 39860 sites in matrix:
-           ID Condition Replicate    Reads FRiP |
+          |  | ID | Condition | Replicate |    Reads | FRiP |
+          | :---: | :---: | :---: | :---: | :---: | :---: |
           | 1 | 201fDMSOw1 |  fDMSOw1 |        1 | 1880751 | 0.11 |
           | 2 | 202fDMSOw1 |  fDMSOw1 |        2 | 1014406 | 0.13 |
           | 3 | 203fDMSOw1 |  fDMSOw1 |        3 | 1506817 | 0.11 |
@@ -214,7 +215,8 @@
         * `bioinformatics/plots/correlation_affinity_narrow.png` is an affinity score-based correlation graph
         * `diffbind_analyzed_narrow.rds` was created after establishing contrasts based on condition (treatment x sex x week) and running DESeq2 analysis with dba.analyze
           24 Samples, 38491 sites in matrix:
-           ID Condition Replicate    Reads FRiP
+          |  | ID | Condition | Replicate |    Reads | FRiP |
+          | :---: | :---: | :---: | :---: | :---: | :---: |
           | 1 | 201fDMSOw1 |  fDMSOw1 |        1 | 1880751 | 0.10 |
           | 2 | 202fDMSOw1 |  fDMSOw1 |        2 | 1014406 | 0.12 |
           | 3 | 203fDMSOw1 |  fDMSOw1 |        3 | 1506817 | 0.10 |
@@ -241,7 +243,8 @@
           | 24 | 299mDMSOw5 |  mDMSOw5 |        3 | 6694580 | 0.05 |
           
           Design: [~Condition] | 21 Contrasts:
-                Factor   Group Samples  Group2 Samples2 DB.DESeq2
+          |  | Factor |  Group | Samples | Group2 | Samples2 | DB.DESeq2 |
+          | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
           1 | Condition | fDMSOw1 |      3 | fTBTw1 |       4 |      350 |
           2 | Condition | fDMSOw1 |      3 | mDMSOw1 |       3 |     1118 |
           3 | Condition | fDMSOw1 |      3 | mTBTw1 |       3 |     1014 |
