@@ -114,6 +114,7 @@
 ![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/correlation_affinity.png)
         * `diffbind_analyzed.rds` was created after establishing contrasts based on condition (treatment x sex x week) and running DESeq2 analysis with dba.analyze
           * 24 Samples, 73977 sites in matrix:
+      
           |  | ID | Condition | Replicate |    Reads | FRiP |
           | :---: | :---: | :---: | :---: | :---: | :---: |
           | 1 | 201fDMSOw1 |  fDMSOw1 |        1 | 1880751 | 0.12 |
