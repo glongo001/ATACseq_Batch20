@@ -85,9 +85,9 @@
       * I ran this on both broad peaks and narrow peaks, everything that was generated with narrow peaks is in `narrow_peaks` folder in HPC3
       * On broad peaks:
         * `diffbind_counted.rds` contains read count at each peak and the consensus peakset
-          | 24 Samples, 75642 sites in matrix: |
-          | ID | Condition | Replicate |    Reads | FRiP |
-          | :--- | :--- | :--- | :--- | :--- |
+        * 24 Samples, 75642 sites in matrix:
+          |  | ID | Condition | Replicate |    Reads | FRiP |
+          | :--- | :--- | :--- | :--- | :--- | :--- |
           | 1 | 201fDMSOw1 |  fDMSOw1 |        1 | 1880751 | 0.13 |
           | 2 | 202fDMSOw1 |  fDMSOw1 |        2 | 1014406 | 0.14 |
           | 3 | 203fDMSOw1 |  fDMSOw1 |        3 | 1506817 | 0.12 |
