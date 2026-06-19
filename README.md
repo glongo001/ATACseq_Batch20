@@ -259,27 +259,27 @@
           Design: [~Condition] | 21 Contrasts:
           |  | Factor |  Group | Samples | Group2 | Samples2 | DB.DESeq2 |
           | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-          1 | Condition | fDMSOw1 |      3 | fTBTw1 |       4 |      350 |
-          2 | Condition | fDMSOw1 |      3 | mDMSOw1 |       3 |     1118 |
-          3 | Condition | fDMSOw1 |      3 | mTBTw1 |       3 |     1014 |
-          4 | Condition | fDMSOw1 |      3 | fDMSOw5 |       3 |      511 |
-          5 | Condition | fDMSOw1 |      3 | mDMSOw5 |       3 |     3147 |
-          6 | Condition | fDMSOw1 |      3 | mTBTw5 |       3 |      696 |
-          7 | Condition |  fTBTw1 |      4 | mDMSOw1 |       3 |      796 |
-          8 | Condition |  fTBTw1 |      4 | mTBTw1 |       3 |        4 |
-          9 | Condition |  fTBTw1 |      4 | fDMSOw5 |       3 |        0 |
-          10 | Condition |  fTBTw1 |      4 | mDMSOw5 |       3 |      805 |
-          11 | Condition |  fTBTw1 |      4 | mTBTw5 |       3 |       17 |
-          12 | Condition | mDMSOw1 |      3 | mTBTw1 |       3 |     1162 |
-          13 | Condition | mDMSOw1 |      3 | fDMSOw5 |       3 |     2448 |
-          14 | Condition | mDMSOw1 |      3 | mDMSOw5 |       3 |     3503 |
-          15 | Condition | mDMSOw1 |      3 | mTBTw5 |       3 |      448 |
-          16 | Condition | mTBTw1 |      3 | fDMSOw5 |       3 |        5 |
-          17 | Condition | mTBTw1 |      3 | mDMSOw5 |       3 |        0 |
-          18 | Condition | mTBTw1 |      3 | mTBTw5 |       3 |        0 |
-          19 | Condition | fDMSOw5 |      3 | mDMSOw5 |       3 |      295 |
-          20 | Condition | fDMSOw5 |      3 | mTBTw5 |       3 |       39 |
-          21 | Condition |  mTBTw5 |      3 | mDMSOw5 |       3 |        0 |
+          | 1 | Condition | fDMSOw1 |      3 | fTBTw1 |       4 |      350 |
+          | 2 | Condition | fDMSOw1 |      3 | mDMSOw1 |       3 |     1118 |
+          | 3 | Condition | fDMSOw1 |      3 | mTBTw1 |       3 |     1014 |
+          | 4 | Condition | fDMSOw1 |      3 | fDMSOw5 |       3 |      511 |
+          | 5 | Condition | fDMSOw1 |      3 | mDMSOw5 |       3 |     3147 |
+          | 6 | Condition | fDMSOw1 |      3 | mTBTw5 |       3 |      696 |
+          | 7 | Condition |  fTBTw1 |      4 | mDMSOw1 |       3 |      796 |
+          | 8 | Condition |  fTBTw1 |      4 | mTBTw1 |       3 |        4 |
+          | 9 | Condition |  fTBTw1 |      4 | fDMSOw5 |       3 |        0 |
+          | 10 | Condition |  fTBTw1 |      4 | mDMSOw5 |       3 |      805 |
+          | 11 | Condition |  fTBTw1 |      4 | mTBTw5 |       3 |       17 |
+          | 12 | Condition | mDMSOw1 |      3 | mTBTw1 |       3 |     1162 |
+          | 13 | Condition | mDMSOw1 |      3 | fDMSOw5 |       3 |     2448 |
+          | 14 | Condition | mDMSOw1 |      3 | mDMSOw5 |       3 |     3503 |
+          | 15 | Condition | mDMSOw1 |      3 | mTBTw5 |       3 |      448 |
+          | 16 | Condition | mTBTw1 |      3 | fDMSOw5 |       3 |        5 |
+          | 17 | Condition | mTBTw1 |      3 | mDMSOw5 |       3 |        0 |
+          | 18 | Condition | mTBTw1 |      3 | mTBTw5 |       3 |        0 |
+          | 19 | Condition | fDMSOw5 |      3 | mDMSOw5 |       3 |      295 |
+          | 20 | Condition | fDMSOw5 |      3 | mTBTw5 |       3 |       39 |
+          | 21 | Condition |  mTBTw5 |      3 | mDMSOw5 |       3 |        0 |
         * `bioinformatics/narrow_attempt/plots/contrasted_correlations_narrow.png` is correlation after applying contrasts
 ![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/narrow_attempt/plots/contrasted_correlations_narrow.png)
         * `bioinformatics/narrow_attempt/ATAC_DiffPeaks_narrow.txt` is a differential binding report on `fTBTw1` vs `mDMSOw1` because this was what the report was on in the HDD
