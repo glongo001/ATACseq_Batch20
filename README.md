@@ -4,7 +4,7 @@
 
 ## Data Locations on HPC3
 - All intermediate files are stored on HPC3 at the following locations:
-  - STAR output: `'/share/crsp/lab/blumberg/share/STAR_output/trimmed'
+  - STAR output: `/share/crsp/lab/blumberg/share/STAR_output/trimmed'
   - Sorted BAMSs: '/share/crsp/lab/blumberg/share/sorted_bam/trimmed'
   - Merged BAMs: '/share/crsp/lab/blumberg/share/merged_bams'
   - mtDNA removed BAMs: '/share/crsp/lab/blumberg/share/mtDNAremoved_bams'
