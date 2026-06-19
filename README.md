@@ -39,8 +39,7 @@
       * I attempted this step without control but it was too strict and lost meaningful data
       * I also attempted it with the downsampled control but it created false peaks, the original negative control file created the cleanest output
     * Parameters for narrow peaks:
-      * '''bash
-        macs2 callpeak \
+      * '''macs2 callpeak \
           -t "$in_bam" \
           -c "${negative_control_file}" \
           -n "${sample}" \
@@ -56,8 +55,7 @@
         '''
       * Narrow peaks are in `/share/crsp/lab/blumberg/share/narrowPeaks` folder in HPC3, bed files are inside `bedFiles` folder
     * Parameters for broad peaks:
-      * '''bash
-        macs2 callpeak \
+      * '''macs2 callpeak \
           -t "$in_bam" \
           -c "${negative_control_file}" \
           -n "${sample}" \
