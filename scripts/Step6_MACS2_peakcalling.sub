@@ -1,0 +1,98 @@
+#!/bin/bash
+#SBATCH --job-name=callpeak_job      ## Name of the job
+#SBATCH -A BLUMBERG_LAB      ## account to charge
+#SBATCH -p standard               ## partition name
+#SBATCH --array=0-23             ##24 samples = 0 to 23
+#SBATCH --nodes=1             ## (-N) number of nodes to use
+#SBATCH --ntasks=1            ## (-n) number of tasks to launch
+#SBATCH --cpus-per-task=8     ## number of cores the job needs
+#SBATCH --mem=16G           # increase memory allocation
+#SBATCH --error=slurm-%A_%a.err  ## error log file
+#SBATCH --output=slurm-%A_%a.out ## output log file
+
+#set variables for where to find and store files
+#bam path
+bam_path='/share/crsp/lab/blumberg/share/dedup_bam'
+#broad peaks path
+broad_path='/share/crsp/lab/blumberg/share/broadPeaks'
+broad_bed_path='/share/crsp/lab/blumberg/share/broadPeaks/bedFiles'
+#narrow peaks path
+narrow_path='/share/crsp/lab/blumberg/share/narrowPeaks'
+narrow_bed_path='/share/crsp/lab/blumberg/share/narrowPeaks/bedFiles'
+#negative control bam
+negative_control_file="/pub/galongo/ATAC-seq/negative_control/MF591-PE.bam"
+
+mkdir -p "$broad_path" "$broad_bed_path" "$narrow_path" "$narrow_bed_path"
+
+module load macs/2.2.7.1
+
+echo "Job started at $(date)"
+
+#get bams
+bams=(${bam_path}/*.dedup.bam)
+in_bam="${bams[$SLURM_ARRAY_TASK_ID]}"
+
+#safety check
+[[ ! -f "$in_bam" ]] && {
+    echo "ERROR: BAM not found for ${SLURM_ARRAY_TASK_ID}"
+    exit 1
+}
+
+#get sample name
+sample=$(basename "$in_bam" .dedup.bam)
+
+echo "Calling MACS2 peaks for $sample"
+
+#NARROW PEAKS
+macs2 callpeak \
+    -t "$in_bam" \
+    -c "${negative_control_file}" \
+    -n "${sample}" \
+    -f BAM \
+    -g mm \
+    -s 75 \
+    --outdir "$narrow_path" \
+    --nomodel \
+    --shift -37 \
+    --extsize 73 \
+    -q 0.01 \
+    --verbose 3
+
+#safety check
+if [[ ! -f "${narrow_path}/${sample}_peaks.narrowPeak" ]]; then
+    echo "ERROR: Narrow peaks not generated for $sample"
+    exit 1
+fi
+
+#create bed files
+cut -f 1-6 "${narrow_path}/${sample}_peaks.narrowPeak" > "${narrow_bed_path}/${sample}.bed"
+
+#BROAD PEAKS
+macs2 callpeak \
+    -t "$in_bam" \
+    -c "${negative_control_file}" \
+    -n "${sample}" \
+    -f BAM \
+    -g mm \
+    -s 75 \
+    --outdir "$broad_path" \
+    --nomodel \
+    --shift -100 \
+    --extsize 200 \
+    -q 0.05 \
+    --broad \
+    --broad-cutoff 0.1 \
+    --verbose 3
+
+#safety check
+if [[ ! -f "${broad_path}/${sample}_peaks.broadPeak" ]]; then
+    echo "ERROR: Broad peaks not generated for $sample"
+    exit 1
+fi
+
+#create bed files
+cut -f 1-6 "${broad_path}/${sample}_peaks.broadPeak" > "${broad_bed_path}/${sample}.bed"
+
+echo "DONE: $sample"
+
+echo "Job finished at $(date)"

@@ -1,0 +1,43 @@
+#!/bin/bash
+#SBATCH --job-name=bigwigs
+#SBATCH -A BLUMBERG_LAB
+#SBATCH -p standard
+#SBATCH --array=0-23
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=6
+#SBATCH --mem=64G
+#SBATCH --error=slurm-%A_%a.err
+#SBATCH --output=slurm-%A_%a.out
+
+bam_path='/share/crsp/lab/blumberg/share/dedup_bam'
+output_dir='/share/crsp/lab/blumberg/share/bigwigs'
+
+module load anaconda/2024.06
+. ~/.mycondainit-2024.06
+conda activate r4.5
+module load deeptools
+
+echo "Job started at $(date)"
+
+#effective genome size for mm10
+GENOMESIZE=2652783500
+
+#make a list of BAMs
+bam_list=($(ls ${bam_path}/*.dedup.bam))
+bam_file="${bam_list[$SLURM_ARRAY_TASK_ID]}"
+basename=$(basename "$bam_file" .bam)
+
+#run bamCoverage (like Toshi’s)
+bamCoverage \
+    -b "$bam_file" \
+    -o "${output_dir}/${basename}.normalized.bw" \
+    --normalizeUsing RPGC \
+    --effectiveGenomeSize $GENOMESIZE \
+    --binSize 10 \
+    --ignoreForNormalization chrX \
+    --numberOfProcessors 6 \
+    --ignoreDuplicates \
+    --outFileFormat bigwig
+
+echo "Job finished at $(date)"

@@ -1,0 +1,56 @@
+#!/bin/bash
+#SBATCH --job-name=flagstat_job      ## Name of the job
+#SBATCH -A BLUMBERG_LAB      ## account to charge
+#SBATCH -p standard               ## partition name
+#SBATCH --nodes=1             ## (-N) number of nodes to use
+#SBATCH --ntasks=1            ## (-n) number of tasks to launch
+#SBATCH --cpus-per-task=8     ## number of cores the job needs
+#SBATCH --mem=8G           # increase memory allocation
+#SBATCH --error=slurm-%j.err  ## error log file
+#SBATCH --output=slurm-%j.out ## output log file
+
+#set variables for where to find and store files
+#bam path
+bam_path='/share/crsp/lab/blumberg/share/dedup_bam'
+
+combined_file="${bam_path}/flagstat.txt"
+summary_file="${bam_path}/flagstat_summary.txt"
+
+#clear old files
+> "$combined_file"
+> "$summary_file"
+
+#load samtools
+module load samtools/1.15.1
+
+echo "Job started at $(date)"
+
+echo "Running flagstat on all BAM files..."
+
+#process each BAM
+for bam in ${bam_path}/*.dedup.bam; do
+    if [[ ! -f "$bam" ]]; then
+        echo "WARNING: BAM not found: $bam"
+        continue
+    fi
+    sample=$(basename "$bam" .dedup.bam)
+    echo "Processing: $sample"
+
+    #capture flagstat
+    stats=$(samtools flagstat "$bam")
+
+    #write to the combined file
+    echo "${sample}.dedup.bam" >> "$combined_file"
+    echo "$stats" >> "$combined_file"
+
+    #separator
+    echo "***" >> "$combined_file"
+
+    #extract total reads
+    total_reads=$(echo "$stats" | head -1 | awk '{print $1}')
+    echo -e "${sample}\t${total_reads}" >> "$summary_file"
+
+    echo " Total reads: $total_reads"
+done
+
+echo "Job finished at $(date)"

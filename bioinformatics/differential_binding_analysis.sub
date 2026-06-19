@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#SBATCH --job-name=differential_binding_analysis      ## Name of the job.
+#SBATCH -A BLUMBERG_LAB      ## account to charge
+#SBATCH -p standard               ## partition name
+#SBATCH --nodes=1             ## (-N) number of nodes to use
+#SBATCH --ntasks=1            ## (-n) number of tasks to launch
+#SBATCH --cpus-per-task=1     ## number of cores the job needs
+#SBATCH --mem=64G           # increase memory allocation
+#SBATCH --error=slurm-%J.err  ## error log file
+#SBATCH --output=slurm-%J.out ## output log file
+
+module load anaconda/2024.06
+. ~/.mycondainit-2024.06
+conda activate r4.5
+
+echo "Job started at $(date)"
+
+#run R script
+Rscript /share/crsp/lab/blumberg/share/bioinformatics/DiffBind_CHIPseeker_narrow.R
+
+echo "Job finished at $(date)"

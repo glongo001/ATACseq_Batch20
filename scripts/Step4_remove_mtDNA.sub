@@ -1,0 +1,89 @@
+#!/bin/bash
+#SBATCH --job-name=remove_mtDNA      ## Name of the job
+#SBATCH -A BLUMBERG_LAB      ## account to charge
+#SBATCH -p standard               ## partition name
+#SBATCH --array=0-23             ##24 samples = 0 to 23
+#SBATCH --nodes=1             ## (-N) number of nodes to use
+#SBATCH --ntasks=1            ## (-n) number of tasks to launch
+#SBATCH --cpus-per-task=8     ## number of cores the job needs
+#SBATCH --mem=64G           # increase memory allocation
+#SBATCH --error=slurm-%A_%a.err  ## error log file
+#SBATCH --output=slurm-%A_%a.out ## output log file
+
+#set variables for where to find and store files
+#bam path
+bam_path='/share/crsp/lab/blumberg/share/merged_bams'
+#output path
+out_path='/share/crsp/lab/blumberg/share/mtDNAremoved_bams'
+
+module load samtools/1.15.1
+
+echo "Job started at $(date)"
+
+#get sample names from BAM files
+bams=(${bam_path}/*merged.sorted.bam)
+in_bam="${bams[$SLURM_ARRAY_TASK_ID]}"
+
+#safety check
+[[ ! -f "$in_bam" ]] && {
+    echo "ERROR: BAM not found for ${SLURM_ARRAY_TASK_ID}"
+    exit 1
+}
+
+#get sample name
+sample=$(basename "$in_bam" .merged.sorted.bam)
+out_bam="${out_path}/${sample}.mtDNArmvd.sortedByCoord.bam"
+
+#skip if done
+if [[ -f "$out_bam" ]]; then
+    echo "Output exists, skipping: $out_bam"
+    exit 0
+fi
+
+echo "Removing chrM from $sample"
+
+#keep BAM headers to keep bam output valid, convert mt reads and write new bam
+samtools view -@ $SLURM_CPUS_PER_TASK -h "$in_bam" | \
+awk 'BEGIN{OFS="\t"}
+{
+    #keep header except chrM SQ line
+    if ($1 ~ /^@/) {
+        if ($0 ~ /^@SQ/ && $0 ~ /SN:chrM/) next
+        print
+        next
+    }
+
+    #convert chrM reads to unmapped
+    if ($3 == "chrM") {
+        flag = $2
+
+        #skip secondary/supplementary
+        if (and(flag, 0x900)) {
+            next
+        }
+
+        #set unmapped flag
+        flag = or(flag, 0x4)
+
+        #unset proper pair
+        flag = and(flag, compl(0x2))
+
+        $2 = flag
+        $3 = "*"
+        $4 = 0
+        $5 = 0
+        $6 = "*"
+        $8 = 0
+
+        #remove optional fields
+        NF = 11
+    }
+
+    print
+}' | samtools view -@ $SLURM_CPUS_PER_TASK -b - | \
+samtools sort -@ $SLURM_CPUS_PER_TASK -o "$out_bam"
+
+#index the BAM file
+samtools index "$out_bam"
+
+echo "Job finished at $(date)"

@@ -1,0 +1,55 @@
+#!/bin/bash
+#SBATCH --job-name=merge_bam_ATACseq      ## Name of the job.
+#SBATCH -A BLUMBERG_LAB      ## account to charge                                                      
+#SBATCH -p standard               ## partition name                                                    
+#SBATCH --nodes=1             ## (-N) number of nodes to use                                           
+#SBATCH --ntasks=1            ## (-n) number of tasks to launch                                        
+#SBATCH --cpus-per-task=6      ## number of cores the job needs                                        
+#SBATCH --error=slurm-%J.err  ## error log file                                                        
+#SBATCH --output=slurm-%J.out ## output log file  
+
+module load samtools/1.15.1
+
+echo "Job started at $(date)"
+
+bam_dir="/share/crsp/lab/blumberg/share/sorted_bam/trimmed"
+output_dir="/share/crsp/lab/blumberg/share/merged_bams"
+
+mkdir -p "$output_dir"
+
+#get sample names from BAM files
+samples=$(ls ${bam_dir}/*_L00*_Aligned.sorted.bam \
+    | sed 's|.*/||' \
+    | sed 's/_L00[0-9]_Aligned.sorted.bam//' \
+    | sort -u)
+
+#iterate to group by sample
+for sample in $samples; do
+    echo "Merging BAMs for sample: $sample"
+    #get BAM files for this sample
+    bam_files=()
+    for lane in {1..4}; do
+        #look at sample, add to list if it matches
+        bam_file="$bam_dir/${sample}_L00${lane}_Aligned.sorted.bam"
+        if [[ -f "$bam_file" ]]; then
+            bam_files+=("$bam_file")
+        else
+            echo "Warning: BAM file not found for $bam_file"
+        fi
+    done
+
+    #in case no bam files are found
+    if [[ ${#bam_files[@]} -ge 1 ]]; then
+        #define output file
+        merged_bam="$output_dir/${sample}.merged.sorted.bam"
+        #merge bams
+        echo "Merging files: ${bam_files[@]}"
+        samtools merge -@ 6 "$merged_bam" ${bam_files[@]}
+        #index the merged BAM
+        samtools index "$merged_bam"
+    else
+        echo "No BAM files found for $sample"
+    fi
+done
+
+echo "Job finished at $(date)"
