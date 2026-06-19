@@ -268,18 +268,21 @@
           21 | Condition |  mTBTw5 |      3 | mDMSOw5 |       3 |        0 |
         * `bioinformatics/ATAC_DiffPeaks_narrow.txt` is a differential binding report on `fTBTw1` vs `mDMSOw1` because this was what the report was on in the HDD
         * `bioinformatics/ATAC_DiffPeaks_malew1_narrow.txt` is a differential binding report on `mTBTw1` vs `mDMSOw1`
-        * I attempted to create reports comparing `mTBTw5` vs `mDMSOw1`, `fTBTw1` vs `fDMSOw1`, and `fTBTw5` vs `fDMSOw5` but they were not generated
+        * `bioinformatics/ATAC_DiffPeaks_femalew1_narrow.txt` is a differential binding report on `fTBTw1` vs `fDMSOw1`
+        * I attempted to create reports comparing `mTBTw5` vs `mDMSOw1`, and `fTBTw5` vs `fDMSOw5` but they were not generated
         * `bioinformatics/plots/Venndiagrams_w1_narrow.png` is a Venn diagram on all w1 samples
         * `bioinformatics/plots/Venndiagrams_w5_narrow.png` is a Venn diagram on all w5 samples
-        * `bioinformatics/plots/MAplot_ATAC_malew1_narrow.png` is an MA plot on male w1 samples. 1223 peaks had FDR < 0.05
+        * `bioinformatics/plots/MAplot_ATAC_malew1_narrow.png` is an MA plot on male w1 samples. 1162 peaks had FDR < 0.05
         * `bioinformatics/plots/MAplot_ATAC_malew5_narrow.png` is an MA plot on male w5 samples. 0 peaks had FDR < 0.05
-        * `bioinformatics/plots/MAplot_ATAC_femalew1_narrow.png` is an MA plot on female w1 samples. 0 peaks had FDR < 0.05
+        * `bioinformatics/plots/MAplot_ATAC_femalew1_narrow.png` is an MA plot on female w1 samples. 350 peaks had FDR < 0.05
         * MA plot of female w5 samples was not generated
         * `bioinformatics/plots/PCAplot_ATAC_narrow.png` is a PCA plot showing sample clusters by condition
         * `bioinformatics/plots/boxplot_malew1_narrow.png` is a boxplot showing conts per sample a p-values after normalization on male w1 samples
-          * I attempted to generate on male w5, female w1, and female w5, but they were not generated
+        * `bioinformatics/plots/boxplot_femalew1_narrow.png` is a boxplot showing conts per sample a p-values after normalization on female w1 samples
+          * I attempted to generate on male w5 and female w5, but they were not generated
         * `bioinformatics/plots/heatmap_ATAC_differential_malew1_narrow.png` is a heatmap showing only significant differential peaks
-          * I attempted to generate on male w5, female w1, and female w5, but they were not generated
+        * `bioinformatics/plots/heatmap_ATAC_differential_femalew1_narrow.png` is a heatmap showing only significant differential peaks
+          * I attempted to generate on male w5 and female w5, but they were not generated
           * `bioinformatics/plots/heatmap_ATAC_differential_pearson_narrow.png` is a pearson correlation heatmap
           * `bioinformatics/plots/heatmap_ATAC_differential_spearman_narrow.png` is a spearman correlation heatmap
           * I attempted to create a kendall correlation heatmap but the run would crash out in the cluster so I removed that line of code
