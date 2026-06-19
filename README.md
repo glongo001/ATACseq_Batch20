@@ -227,7 +227,7 @@
         * `bioinformatics/narrow_attempt/plots/correlation_affinity_narrow.png` is an affinity score-based correlation graph
 ![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/narrow_attempt/plots/correlation_affinity_narrow.png)
         * `diffbind_analyzed_narrow.rds` was created after establishing contrasts based on condition (treatment x sex x week) and running DESeq2 analysis with dba.analyze
-          24 Samples, 38491 sites in matrix:
+        * 24 Samples, 38491 sites in matrix:
           |  | ID | Condition | Replicate |    Reads | FRiP |
           | :---: | :---: | :---: | :---: | :---: | :---: |
           | 1 | 201fDMSOw1 |  fDMSOw1 |        1 | 1880751 | 0.10 |
