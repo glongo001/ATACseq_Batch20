@@ -167,6 +167,8 @@
           | 19 | Condition | fDMSOw5 |      3 | mDMSOw5 |       3 |      176 |
           | 20 | Condition | fDMSOw5 |      3 | mTBTw5 |       3 |       34 |
           | 21 | Condition | mTBTw5 |      3 | mDMSOw5 |       3 |        0 |
+        * `bioinformatics/plots/contrasted_correlations.png` is correlation after contrasting
+![alt text]((https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/contrasted_correlations.png))
         * `bioinformatics/ATAC_DiffPeaks.txt` is a differential binding report on `fTBTw1` vs `mDMSOw1` because this was what the report was on in the HDD
         * `bioinformatics/ATAC_DiffPeaks_malew1.txt` is a differential binding report on `mTBTw1` vs `mDMSOw1`
         * I attempted to create reports comparing `mTBTw5` vs `mDMSOw1`, `fTBTw1` vs `fDMSOw1`, and `fTBTw5` vs `fDMSOw5` but they were not generated
