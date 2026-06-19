@@ -113,6 +113,7 @@
             | 23 | 298mTBTw1 |   mTBTw1 |        3 | 4103125 | 0.10 |
             | 24 | 299mDMSOw5 |  mDMSOw5 |        3 | 6694580 | 0.07 |
         * `bioinformatics/plots/correlation_affinity.png` is an affinity score-based correlation graph
+![alt text](https://github.com/glongo001/ATACseq_Batch20/blob/main/bioinformatics/plots/correlation_affinity.png)
         * `diffbind_analyzed.rds` was created after establishing contrasts based on condition (treatment x sex x week) and running DESeq2 analysis with dba.analyze
           * 24 Samples, 73977 sites in matrix:
           |  | ID | Condition | Replicate |    Reads | FRiP |
