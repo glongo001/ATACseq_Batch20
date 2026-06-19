@@ -87,30 +87,30 @@
         * `diffbind_counted.rds` contains read count at each peak and the consensus peakset
           | 24 Samples, 75642 sites in matrix: |
           | ID | Condition | Replicate |    Reads | FRiP |
-          | 1 | 201fDMSOw1 |  fDMSOw1 |        1 | 1880751 0.13
-          | 2 | 202fDMSOw1 |  fDMSOw1 |        2 | 1014406 0.14
-          | 3 | 203fDMSOw1 |  fDMSOw1 |        3 | 1506817 0.12
-          | 4 | 204fTBTw1  |  fTBTw1 |        1 | 1890111 0.11
-          | 5 | 205fTBTw1  |  fTBTw1 |        2 | 3320502 0.11
-          | 6 | 206fTBTw1  |  fTBTw1 |        3 | 3166823 0.10
-          | 7 | 213mDMSOw1 |  mDMSOw1 |        1 | 3651781 0.10
-          | 8 | 214mDMSOw1 |  mDMSOw1 |        2 | 1010210 0.12
-          | 9 | 215mDMSOw1 |  mDMSOw1 |        3 | 2781559 0.10
-          | 10 | 217mTBTw1 |   mTBTw1 |        1 | 6203853 0.12
-          | 11 | 218mTBTw1 |   mTBTw1 |        2 | 7642028 0.11
-          | 12 | 225fDMSOw5 |  fDMSOw5 |        1 | 4140907 0.10
-          | 13 | 226fDMSOw5 |  fDMSOw5 |        2 | 4052783 0.12
-          | 14 | 227fDMSOw5 |  fDMSOw5 |        3 | 3344052 0.13
-          | 15 | 228fTBTw5 |   fTBTw5 |        1 | 2967667 0.14
-          | 16 | 230fTBTw5 |   fTBTw5 |        2 | 3006112 0.11
-          | 17 | 238mDMSOw5 |  mDMSOw5 |        1 | 11812505 0.09
-          | 18 | 239mDMSOw5 |  mDMSOw5 |        2 | 8544265 0.09
-          | 19 | 240mTBTw5 |   mTBTw5 |        1 | 5687231 0.11
-          | 20 | 241mTBTw5 |   mTBTw5 |        2 | 5310431 0.12
-          | 21 | 242mTBTw5 |   mTBTw5 |        3 | 4835438 0.12
-          | 22 | 297fTBTw1 |   fTBTw1 |        4 | 4047002 0.09
-          | 23 | 298mTBTw1 |   mTBTw1 |        3 | 4103125 0.10
-          | 24 | 299mDMSOw5 |  mDMSOw5 |        3 | 6694580 0.07
+          | 1 | 201fDMSOw1 |  fDMSOw1 |        1 | 1880751 | 0.13 |
+          | 2 | 202fDMSOw1 |  fDMSOw1 |        2 | 1014406 | 0.14 |
+          | 3 | 203fDMSOw1 |  fDMSOw1 |        3 | 1506817 | 0.12 |
+          | 4 | 204fTBTw1  |  fTBTw1 |        1 | 1890111 | 0.11 |
+          | 5 | 205fTBTw1  |  fTBTw1 |        2 | 3320502 | 0.11 |
+          | 6 | 206fTBTw1  |  fTBTw1 |        3 | 3166823 | 0.10 |
+          | 7 | 213mDMSOw1 |  mDMSOw1 |        1 | 3651781 | 0.10 |
+          | 8 | 214mDMSOw1 |  mDMSOw1 |        2 | 1010210 | 0.12 |
+          | 9 | 215mDMSOw1 |  mDMSOw1 |        3 | 2781559 | 0.10 |
+          | 10 | 217mTBTw1 |   mTBTw1 |        1 | 6203853 | 0.12 |
+          | 11 | 218mTBTw1 |   mTBTw1 |        2 | 7642028 | 0.11 |
+          | 12 | 225fDMSOw5 |  fDMSOw5 |        1 | 4140907 | 0.10 |
+          | 13 | 226fDMSOw5 |  fDMSOw5 |        2 | 4052783 | 0.12 |
+          | 14 | 227fDMSOw5 |  fDMSOw5 |        3 | 3344052 | 0.13 |
+          | 15 | 228fTBTw5 |   fTBTw5 |        1 | 2967667 | 0.14 |
+          | 16 | 230fTBTw5 |   fTBTw5 |        2 | 3006112 | 0.11 |
+          | 17 | 238mDMSOw5 |  mDMSOw5 |        1 | 11812505 | 0.09 |
+          | 18 | 239mDMSOw5 |  mDMSOw5 |        2 | 8544265 | 0.09 |
+          | 19 | 240mTBTw5 |   mTBTw5 |        1 | 5687231 | 0.11 |
+          | 20 | 241mTBTw5 |   mTBTw5 |        2 | 5310431 | 0.12 |
+          | 21 | 242mTBTw5 |   mTBTw5 |        3 | 4835438 | 0.12 |
+          | 22 | 297fTBTw1 |   fTBTw1 |        4 | 4047002 | 0.09 |
+          | 23 | 298mTBTw1 |   mTBTw1 |        3 | 4103125 | 0.10 |
+          | 24 | 299mDMSOw5 |  mDMSOw5 |        3 | 6694580 | 0.07 |
         * `bioinformatics/plots/correlation_affinity.png` is an affinity score-based correlation graph
         * `diffbind_analyzed.rds` was created after establishing contrasts based on condition (treatment x sex x week) and running DESeq2 analysis with dba.analyze
           24 Samples, 73977 sites in matrix:
